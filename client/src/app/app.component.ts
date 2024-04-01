@@ -10,10 +10,5 @@ import { BlogPostComponent } from './blog-post/blog-post.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'AngularNodeBlog';
-  displayPostsBoolean = false;
 
-  displayPosts(): void {
-    this.displayPostsBoolean = !this.displayPostsBoolean;
-  }
 }

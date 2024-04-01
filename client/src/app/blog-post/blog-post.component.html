@@ -1,4 +1,11 @@
 <div class='post'>
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <label for="name">Name: </label>
+    <input id="name" type="text" formControlName="nameControl">
+    <label for="post">Post: </label>
+    <input id="post" type="text" formControlName="postControl">
+    <button type="submit" [disabled]="!postForm.valid">Submit</button>
+  </form>
   @for (post of postsArray; track post.name) {
     <li>{{ post.name }}: {{ post.post }}</li>
     } @empty {

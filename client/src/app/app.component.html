@@ -1,16 +1,8 @@
 <main class="main">
-  <div>
+  <div class="title">
     ANGULAR BLOG
   </div>
-  <button 
-    class="button"
-    (click)="displayPosts()"
-  >
-    Display Posts
-  </button>
-  @if(displayPostsBoolean){ 
-    <app-blog-post></app-blog-post>
-  }
+  <app-blog-post></app-blog-post>
 </main>
 
 <router-outlet />

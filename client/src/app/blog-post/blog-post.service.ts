@@ -26,7 +26,6 @@ export class BlogPostService {
     this.handleError = httpErrorHandler.createHandleError('BlogPostService');
   }
 
-  /** GET BlogPost from the server */
   getBlogPost(): Observable<BlogPost[]> {
     return this.http.get<BlogPost[]>(this.BlogPostUrl)
       .pipe(
@@ -34,48 +33,14 @@ export class BlogPostService {
       );
   }
 
-  // /* GET BlogPost whose name contains search term */
-  // searchBlogPost(term: string): Observable<BlogPost[]> {
-  //   term = term.trim();
-
-  //   // Add safe, URL encoded search parameter if there is a search term
-  //   const options = term ?
-  //    { params: new HttpParams().set('name', term) } : {};
-
-  //   return this.http.get<BlogPost[]>(this.BlogPostUrl, options)
-  //     .pipe(
-  //       catchError(this.handleError<BlogPost[]>('searchBlogPost', []))
-  //     );
-  // }
-
-  // // This JSONP example doesn't run. It is for the JSONP documentation only.
-  // /** Imaginary API in a different domain that supports JSONP. */
-  // BlogPostSearchUrl = 'https://BlogPost.com/search';
-
-  // /** Does whatever is necessary to convert the result from API to BlogPost */
-  // jsonpResultToBlogPost(result: any) { return result as BlogPost[]; }
-
-  // /* GET BlogPost (using JSONP) whose name contains search term */
-  // searchBlogPostJsonp(term: string): Observable<BlogPost[]> {
-  //   term = term.trim();
-
-  //   const BlogPostUrl = `${this.BlogPostSearchUrl}?${term}`;
-  //   return this.http.jsonp(BlogPostUrl, 'callback')
-  //     .pipe(
-  //       map(result => this.jsonpResultToBlogPost(result)),
-  //       catchError(this.handleError('searchBlogPost', []))
-  //     );
-  // }
-
-  // //////// Save methods //////////
-
-  // /** POST: add a new BlogPost to the database */
-  // addBlogPost(BlogPost: BlogPost): Observable<BlogPost> {
-  //   return this.http.post<BlogPost>(this.BlogPostUrl, BlogPost, httpOptions)
-  //     .pipe(
-  //       catchError(this.handleError('addBlogPost', BlogPost))
-  //     );
-  // }
+  /** POST: add a new BlogPost to the database */
+  addBlogPost(BlogPost: BlogPost): Observable<BlogPost> {
+    console.log(BlogPost);
+    return this.http.post<BlogPost>(this.BlogPostUrl, BlogPost, httpOptions)
+      .pipe(
+        catchError(this.handleError('addBlogPost', BlogPost))
+      );
+  }
 
   // /** DELETE: delete the BlogPost from the server */
   // deleteBlogPost(id: number): Observable<unknown> {
