@@ -28,7 +28,6 @@ export class BlogPostService {
 
   /** GET BlogPost from the server */
   getBlogPost(): Observable<BlogPost[]> {
-    console.log("function called")
     return this.http.get<BlogPost[]>(this.BlogPostUrl)
       .pipe(
         catchError(this.handleError('getBlogPost', []))

@@ -15,6 +15,5 @@ export class AppComponent {
 
   displayPosts(): void {
     this.displayPostsBoolean = !this.displayPostsBoolean;
-    console.log("clicked")
   }
 }

@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 
-export var con = mysql.createConnection({
+var con = mysql.createConnection({
   host: "localhost",
   user: "user",
   password: "password",
@@ -43,8 +43,10 @@ con.connect(function(err) {
   //   console.log("Number of records inserted: " + result.affectedRows);
   // });
 
-  // con.query("SELECT * FROM posts", function (err, result) {
-  //   if (err) throw err;
-  //   console.log("Result: " + JSON.stringify(result));
-  // });
+  con.query("SELECT * FROM posts", function (err, result) {
+    if (err) throw err;
+    //console.log("Result: " + JSON.stringify(result));
+  });
 });
+
+module.exports = con;
