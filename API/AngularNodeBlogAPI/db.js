@@ -45,7 +45,6 @@ con.connect(function(err) {
 
   con.query("SELECT * FROM posts", function (err, result) {
     if (err) throw err;
-    //console.log("Result: " + JSON.stringify(result));
   });
 });
 

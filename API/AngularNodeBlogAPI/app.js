@@ -46,8 +46,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// const blog = require("./blog.js");
-// // …
-// app.use("/blog", blog);
-
 module.exports = app;

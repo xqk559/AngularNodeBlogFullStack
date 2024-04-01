@@ -11,22 +11,22 @@ import { BlogPost } from './blog-post';
 })
 export class BlogPostComponent implements OnInit {
   posts: string;
+  postsArray: Array<BlogPost>;
 
   constructor(private blogPostService: BlogPostService) {}
 
   ngOnInit() {
     this.getBlogPosts();
+    this.getBlogPostsArray();
   }
 
   getBlogPosts(): void {
     this.blogPostService.getBlogPost()
       .subscribe(posts => (this.posts = JSON.stringify(posts)));
   }
-  //req = http.get<Heroes>('/api/heroes');
-  
-  // configUrl = 'assets/config.json';
 
-  // getConfig() {
-  //   return this.http.get<Config>(this.configUrl);
-  // }
+  getBlogPostsArray(): void {
+    this.blogPostService.getBlogPost()
+      .subscribe(postsArray => (this.postsArray = postsArray));
+  }
 }

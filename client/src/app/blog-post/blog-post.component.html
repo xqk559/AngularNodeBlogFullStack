@@ -1,4 +1,7 @@
 <div class='post'>
-  <p>blog-post works!</p>
-  <div>{{posts}}</div>
+  @for (post of postsArray; track post.name) {
+    <li>{{ post.name }}: {{ post.post }}</li>
+    } @empty {
+    <li>There are no posts.</li>
+    }
 </div>
