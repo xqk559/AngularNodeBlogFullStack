@@ -8,12 +8,12 @@ import { Observable, catchError, map } from 'rxjs';
 import { BlogPost } from './blog-post';
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    Authorization: 'my-auth-token'
-  })
-};
+// const httpOptions = {
+//   headers: new HttpHeaders({
+//     'Content-Type':  'application/json',
+//     Authorization: 'my-auth-token'
+//   })
+// };
 
 @Injectable()
 export class BlogPostService {
@@ -26,6 +26,7 @@ export class BlogPostService {
     this.handleError = httpErrorHandler.createHandleError('BlogPostService');
   }
 
+  /** GET: get BlogPosts from the database */
   getBlogPost(): Observable<BlogPost[]> {
     return this.http.get<BlogPost[]>(this.BlogPostUrl)
       .pipe(
@@ -35,8 +36,8 @@ export class BlogPostService {
 
   /** POST: add a new BlogPost to the database */
   addBlogPost(BlogPost: BlogPost): Observable<BlogPost> {
-    console.log(BlogPost);
-    return this.http.post<BlogPost>(this.BlogPostUrl, BlogPost, httpOptions)
+    console.log(this.BlogPostUrl + "/addPosts/" + BlogPost.name + "/" + BlogPost.post);
+    return this.http.post<BlogPost>(this.BlogPostUrl + "/addPosts/" + BlogPost.name + "/" + BlogPost.post, BlogPost)
       .pipe(
         catchError(this.handleError('addBlogPost', BlogPost))
       );

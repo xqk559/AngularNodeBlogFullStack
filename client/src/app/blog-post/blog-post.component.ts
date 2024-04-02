@@ -30,6 +30,9 @@ export class BlogPostComponent implements OnInit {
   }
 
   onSubmit() {
-    this.blogPostService.addBlogPost(this.blogPost = <BlogPost>(this.postForm.value));
+    var formBlogPost = <BlogPost>{name: this.postForm.value.nameControl, post: this.postForm.value.postControl};
+    console.log(formBlogPost);
+    this.blogPostService.addBlogPost(this.blogPost = formBlogPost)
+      .subscribe();
   }
 }
