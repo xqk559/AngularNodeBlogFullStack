@@ -1,7 +1,15 @@
 input {
-    margin: 20px;
-  }
+  margin: 20px;
+}
+
+.margin {
+  margin: 10px;
+}
 
 .post {
+  border: solid purple;
+}
+
+.postForm {
     display: block;
 }

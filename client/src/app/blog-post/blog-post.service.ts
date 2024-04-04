@@ -36,30 +36,17 @@ export class BlogPostService {
 
   /** POST: add a new BlogPost to the database */
   addBlogPost(BlogPost: BlogPost): Observable<BlogPost> {
-    console.log(this.BlogPostUrl + "/addPosts/" + BlogPost.name + "/" + BlogPost.post);
     return this.http.post<BlogPost>(this.BlogPostUrl + "/addPosts/" + BlogPost.name + "/" + BlogPost.post, BlogPost)
       .pipe(
         catchError(this.handleError('addBlogPost', BlogPost))
       );
   }
 
-  // /** DELETE: delete the BlogPost from the server */
-  // deleteBlogPost(id: number): Observable<unknown> {
-  //   const url = `${this.BlogPostUrl}/${id}`; // DELETE api/BlogPost/42
-  //   return this.http.delete(url, httpOptions)
-  //     .pipe(
-  //       catchError(this.handleError('deleteBlogPost'))
-  //     );
-  // }
-
-  // /** PUT: update the BlogPost on the server. Returns the updated BlogPost upon success. */
-  // updateBlogPost(BlogPost: BlogPost): Observable<BlogPost> {
-  //   httpOptions.headers =
-  //     httpOptions.headers.set('Authorization', 'my-new-auth-token');
-
-  //   return this.http.put<BlogPost>(this.BlogPostUrl, BlogPost, httpOptions)
-  //     .pipe(
-  //       catchError(this.handleError('updateBlogPost', BlogPost))
-  //     );
-  // }
+  /** DELETE: remove a  BlogPost from the database by id */
+  deleteBlogPost(id: number) {
+    return this.http.delete(this.BlogPostUrl + "/removePost/" + id)
+      .pipe(
+        catchError(this.handleError('deleteBlogPost', id))
+      );
+  }
 }
