@@ -49,4 +49,12 @@ export class BlogPostService {
         catchError(this.handleError('deleteBlogPost', id))
       );
   }
+
+  /** POST: update a  BlogPost from the database by id */
+  editBlogPost(post: BlogPost) {
+    return this.http.post(this.BlogPostUrl + "/removePost/" + post, post)
+      .pipe(
+        catchError(this.handleError('deleteBlogPost', post))
+      );
+  }
 }

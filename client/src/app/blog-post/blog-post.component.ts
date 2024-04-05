@@ -27,6 +27,9 @@ export class BlogPostComponent implements OnInit {
   getBlogPostsArray(): void {
     this.blogPostService.getBlogPost()
       .subscribe(postsArray => (this.postsArray = postsArray));
+    this.postsArray?.map(post => {
+      post.isEditing = false;
+    });
   }
 
   onSubmit() {
@@ -38,6 +41,12 @@ export class BlogPostComponent implements OnInit {
 
   onDelete(id: number) {
     this.blogPostService.deleteBlogPost(id)
+      .subscribe();
+    location.reload();
+  }
+
+  onEdit(post: BlogPost) {
+    this.blogPostService.editBlogPost(post)
       .subscribe();
     location.reload();
   }

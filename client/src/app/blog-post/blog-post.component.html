@@ -10,6 +10,7 @@
     <div class="post">
       <li class="margin">{{ post.name }}: {{ post.post }}</li>
       <button class="margin" (click)="onDelete(post.id)">DELETE</button>
+      <button class="margin" (click)="onEdit(post)">EDIT</button>
     </div>
     } @empty {
     <li>There are no posts.</li>

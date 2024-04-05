@@ -26,3 +26,13 @@ exports.remove_posts = asyncHandler(async (req, res, next) => {
     res.send(JSON.stringify(response));
   });
 });
+
+exports.update_post = asyncHandler(async (req, res, next) => {
+  console.log("HERE");
+  // sql = "DELETE FROM posts WHERE id=" + req.params.id + ";";
+  // console.log(sql);
+  // con.query(sql, function (err, response) {
+  //   if (err) throw err;
+  //   res.send(JSON.stringify(response));
+  // });
+});
