@@ -12,10 +12,14 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class BlogPostComponent implements OnInit {
   blogPost: BlogPost;
+  editedBlogPost: BlogPost;
   postsArray: Array<BlogPost>;
   postForm = new FormGroup({
     nameControl: new FormControl(''),
     postControl: new FormControl('')
+  });
+  editPostForm = new FormGroup({
+    editedPostControl: new FormControl('')
   });
 
   constructor(private blogPostService: BlogPostService) {}
@@ -39,6 +43,13 @@ export class BlogPostComponent implements OnInit {
     location.reload();
   }
 
+  onSubmitEdits(id: number) {
+    var formBlogPost = <BlogPost>{post: this.editPostForm.value.editedPostControl};
+    this.blogPostService.editBlogPost(this.blogPost = formBlogPost, id)
+      .subscribe();
+    location.reload();
+  }
+
   onDelete(id: number) {
     this.blogPostService.deleteBlogPost(id)
       .subscribe();
@@ -46,8 +57,10 @@ export class BlogPostComponent implements OnInit {
   }
 
   onEdit(post: BlogPost) {
-    this.blogPostService.editBlogPost(post)
-      .subscribe();
-    location.reload();
+    post.isEditing = true;
+  }
+
+  onStopEditing(post: BlogPost) {
+    post.isEditing = false;
   }
 }

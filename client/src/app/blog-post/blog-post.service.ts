@@ -1,19 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
-
-
 import { Observable, catchError, map } from 'rxjs';
-
 import { BlogPost } from './blog-post';
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
-
-// const httpOptions = {
-//   headers: new HttpHeaders({
-//     'Content-Type':  'application/json',
-//     Authorization: 'my-auth-token'
-//   })
-// };
 
 @Injectable()
 export class BlogPostService {
@@ -51,10 +40,11 @@ export class BlogPostService {
   }
 
   /** POST: update a  BlogPost from the database by id */
-  editBlogPost(post: BlogPost) {
-    return this.http.post(this.BlogPostUrl + "/removePost/" + post, post)
+  editBlogPost(post: BlogPost, id: number) {
+    console.log(this.BlogPostUrl + "/updatePost/" + post.post + "/" + id);
+    return this.http.post(this.BlogPostUrl + "/updatePost/" + post.post + "/" + id, post)
       .pipe(
-        catchError(this.handleError('deleteBlogPost', post))
+        catchError(this.handleError('updatePost', post))
       );
   }
 }

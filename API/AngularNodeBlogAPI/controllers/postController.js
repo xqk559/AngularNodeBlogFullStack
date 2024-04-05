@@ -18,9 +18,7 @@ exports.add_posts = asyncHandler(async (req, res, next) => {
 });
 
 exports.remove_posts = asyncHandler(async (req, res, next) => {
-  console.log("HERE");
   sql = "DELETE FROM posts WHERE id=" + req.params.id + ";";
-  console.log(sql);
   con.query(sql, function (err, response) {
     if (err) throw err;
     res.send(JSON.stringify(response));
@@ -28,11 +26,9 @@ exports.remove_posts = asyncHandler(async (req, res, next) => {
 });
 
 exports.update_post = asyncHandler(async (req, res, next) => {
-  console.log("HERE");
-  // sql = "DELETE FROM posts WHERE id=" + req.params.id + ";";
-  // console.log(sql);
-  // con.query(sql, function (err, response) {
-  //   if (err) throw err;
-  //   res.send(JSON.stringify(response));
-  // });
+  sql = "UPDATE posts SET post = '" + req.params.post + "' WHERE id = " + req.params.id + ";";
+  con.query(sql, function (err, response) {
+    if (err) throw err;
+    res.send(JSON.stringify(response));
+  });
 });
